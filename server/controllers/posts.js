@@ -1,6 +1,7 @@
 import PostSchema from '../models/Post.js';
+import UserSchema from '../models/User.js'
 
-
+import { v4 as uuidv4 } from 'uuid';
 
 export const createPost = async (req, res) => {
 
@@ -11,7 +12,7 @@ export const createPost = async (req, res) => {
             title: req.body.title,
             text: req.body.text,
             category: req.body.category,
-            user: req.userId,
+            user: userId,
             imageUrl: req.body.imageUrl,
         })
 
@@ -41,3 +42,31 @@ export const getAllPosts = async (req, res) => {
     }
 }
 
+
+export const createComment = async (req, res) => {
+
+    try {
+        const postId = req.params.id;
+        const userId = req.userId;
+
+        const post = await PostSchema.findById(postId)
+        const user = await UserSchema.findById(userId)
+
+        post.comments.push({
+            id: uuidv4(),
+            user: user.fullName,
+            avatar: user.avatar,
+            comment: req.body.comment
+        })
+
+        const updatedPost = await PostSchema.findByIdAndUpdate(postId, post, { new: true })
+
+        res.json(updatedPost)
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: 'Failed to update post',
+        })
+    }
+}
