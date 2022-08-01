@@ -1,0 +1,70 @@
+.header
+    height: 80px
+    width: 100%
+    top: 0
+    left: 0
+    z-index: 1
+    transition: .3s ease-in
+    overflow: hidden
+
+    .navbar
+        display: flex
+        justify-content: space-between
+        align-items: center
+        max-width: 1240px
+        margin: auto
+        height: 100%
+        padding: 0 1rem
+
+        img
+            width: 250px
+            height: auto
+
+        .nav-menu
+            display: flex
+
+            a
+                color: black
+
+            .nav-item
+                padding: 1rem
+                font-weight: 500
+
+                a:hover
+                    padding-bottom: 12px
+
+        .humburger
+            display: none
+
+@media screen and (max-width:940px)
+    .header
+        max-width: 100%
+        background-color: #ffffffe6
+
+        .navbar
+            max-width: 100%
+
+            img
+                width: 150px
+
+            .humburger
+                display: block
+                cursor: pointer
+
+            .nav-menu
+                position: fixed
+                left: -100%
+                top: 80px
+                flex-direction: column
+                background-color: #ffffffe6
+                width: 100%
+                height: 90vh
+                z-index: 999
+                text-align: center
+                transition: .3s
+
+            .nav-menu.active
+                left: 0
+
+                .nav-item
+                    margin: 1.5rem 0
