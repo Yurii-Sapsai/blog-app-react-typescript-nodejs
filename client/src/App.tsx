@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Header from "./components/Header/Header";
 import HomePage from './pages/HomePage/HomePage';
+import AdminPage from './pages/AdminPage/AdminPage';
 
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -27,8 +28,8 @@ function App() {
 
           <Route path="/" element={<HomePage />} />
 
-          {/*     <Route path="/admin/" element={<ProtectedRoute> <AdminPage /> </ProtectedRoute>} />
-            <Route path="/admin/login" element={<LoginPage />} />
+              <Route path="/admin/" element={<AdminPage />} />
+           {/*  <Route path="/admin/login" element={<LoginPage />} />
             <Route path="/admin/registration" element={<RegistrationPage />} /> */}
 
         </Routes>
